@@ -1,37 +1,41 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router'
+import { ThemeProvider } from './components/theme/theme-provider'
+import { AppSidebar } from './components/layout/sidebar'
+import { SiteHeader } from './components/layout/header'
+import { SidebarProvider, SidebarInset } from './components/ui/sidebar'
 
-
+function AppLayout() {
+  return (
+    <SidebarProvider className="w-full flex bg-sidebar min-h-screen">
+      <AppSidebar variant="inset" collapsible="icon" />
+      <SidebarInset className="flex-1 flex flex-col min-h-screen">
+        <div className="flex-1 flex flex-col bg-content-background rounded-xl shadow-sm overflow-hidden">
+          <SiteHeader />
+          <div className="flex-1 overflow-auto">
+            <main className="p-6 pb-12 space-y-6">
+              <Outlet />
+            </main>
+          </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  )
+}
 
 const App = () => {
   return (
-    <BrowserRouter>
-        {/* <Routes>
-          <Route
-            element={
-              <Authenticated key="auth-pages" fallback={<Outlet />}>
-                <NavigateToResource resource="" />
-              </Authenticated>
-            }>
-            <Route path="/login" element={<SignInForm />} />
-          </Route>
-
-          <Route
-            element={
-              <Authenticated key="protected-routes">
-                <Layout>
-                  <Outlet />
-                </Layout>
-              </Authenticated>
-            }>
-            <Route index element={<NavigateToResource resource="dashboard" />} />
-            <Route path="*" element={<ComponenteDeErroAqui />} /> 
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<div>Welcome to the app</div>} />
+            <Route path="dashboard" element={<div>Dashboard</div>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
-        <Toaster />
-        <UnsavedChangesNotifier /> */}
-    </BrowserRouter>
-  );
-};
+      </BrowserRouter>
+    </ThemeProvider>
+  )
+}
 
-export default App;
-
+export default App
