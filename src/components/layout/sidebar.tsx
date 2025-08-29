@@ -17,10 +17,9 @@ import {
   IconUsers,
 } from '@tabler/icons-react'
 
-import { NavDocuments } from '@/components/nav-documents'
-import { NavMain } from '@/components/nav-main'
-import { NavSecondary } from '@/components/nav-secondary'
-import { NavUser } from '@/components/nav-user'
+import { NavMain } from '@/components/menu/nav-main'
+import { NavSecondary } from '@/components/menu/nav-secondary'
+import { NavUser } from '@/components/menu/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -33,34 +32,25 @@ import {
 
 const data = {
   user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+    name: 'leonzv',
+    email: 'email@teste.com',
+    avatar:
+      'https://cdn.discordapp.com/attachments/624701849886392320/1409251190255915198/20231216_074855.jpg?ex=68acb2f2&is=68ab6172&hm=05e62ea94b7aa41b48e6063ac51686dd65a2987f48e1c6cfc78e2d43261e8152&',
   },
   navMain: [
     {
       title: 'Dashboard',
-      url: '#',
+      url: '/dashboard',
       icon: IconDashboard,
     },
     {
-      title: 'Lifecycle',
-      url: '#',
+      title: 'Serviços',
+      url: '/services',
       icon: IconListDetails,
     },
     {
-      title: 'Analytics',
-      url: '#',
-      icon: IconChartBar,
-    },
-    {
-      title: 'Projects',
-      url: '#',
-      icon: IconFolder,
-    },
-    {
-      title: 'Team',
-      url: '#',
+      title: 'Usuários',
+      url: '/users',
       icon: IconUsers,
     },
   ],
@@ -114,19 +104,14 @@ const data = {
   ],
   navSecondary: [
     {
-      title: 'Settings',
+      title: 'Configurações',
       url: '#',
       icon: IconSettings,
     },
     {
-      title: 'Get Help',
+      title: 'Ajuda',
       url: '#',
       icon: IconHelp,
-    },
-    {
-      title: 'Search',
-      url: '#',
-      icon: IconSearch,
     },
   ],
   documents: [
@@ -160,7 +145,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <span className="text-base font-semibold">ATIC Inc.</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -168,7 +153,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
